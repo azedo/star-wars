@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client'
-import { animated, useTransition, useSpring, useChain, config } from 'react-spring'
 import Card from '../../components/Card'
 import Background from '../../components/Background'
 
@@ -64,17 +63,6 @@ function overview() {
       localStorage.setItem('favorites', favorites)
     }
   }, [favorites])
-
-  const transRef = useRef()
-  // (items, item => item.key,
-  const transitions = useTransition(data?.allPeople ? data.allPeople : [], (item) => item.key, {
-    ref: transRef,
-    unique: true,
-    trail: data?.allPeople ? 400 / Object.keys(data?.allPeople).length : 0,
-    from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' },
-  })
 
   const visible = () => {
     if (showAll) {
