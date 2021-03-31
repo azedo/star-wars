@@ -1,16 +1,53 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-shadow {
+  text-shadow: 1px 1px 1px #4c004c;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.shine {
+  /* for shine & gradient effects to work */
+  position: relative;
+  overflow: hidden;
+  /* to ease the button growth on hover */
+  transition: 0.6s;
 }
 
-* {
-  box-sizing: border-box;
+.shine:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 100%;
+  top: 0;
+  filter: blur(30px);
+  transform: translateX(-100px) skewX(-15deg);
+}
+
+.shine:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  width: 30px;
+  height: 100%;
+  top: 0;
+  filter: blur(5px);
+  transform: translateX(-100px) skewX(-15deg);
+}
+
+.shine:hover {
+  background-image: (linear-gradient(to left, #2d8fe5, #d155b8));
+  /* transform: scale(1.2); */
+  z-index: 100;
+}
+
+/* pseudo-elements for right- and left-side shine animations */
+.shine:hover:before,
+.shine:hover:after {
+  transform: translateX(300px) skewX(-15deg);
+  transition: 0.7s;
 }
